@@ -1,0 +1,1 @@
+I have developed a range of applications, each designed to experiment with different technologies and concepts. These applications primarily focus on fetching or displaying my resume data. The technologies I've explored in these projects include, Angular, Express, Lumen, Flask, Spring Boot, Go, Blazor WebAssembly, JavaScript, CSS, and HTML.
