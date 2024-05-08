@@ -1,0 +1,28 @@
+﻿@page "/education"
+@inject IAppService AppService
+
+<PageTitle>Education</PageTitle>
+<h1>Education</h1>
+
+@foreach (var item in AppService.Educations)
+{
+    <h2>@item.InstitutionName</h2>
+    <h3>@item.Degree</h3>
+    <h4>@item.GraduationYear</h4>
+    <br />
+}
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await AppService.GetEducation();
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Error getting education.");
+        }
+    }
+}

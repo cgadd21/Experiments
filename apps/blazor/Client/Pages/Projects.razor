@@ -1,0 +1,27 @@
+﻿@page "/projects"
+@inject IAppService AppService
+
+<PageTitle>Projects</PageTitle>
+<h1>Projects</h1>
+
+@foreach (var item in AppService.Projects)
+{
+    <h2><a href="@item.ProjectLink" target="_blank">@item.ProjectName</a></h2>
+    <p>@item.ProjectDescription</p>
+    <br />
+}
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await AppService.GetProjects();
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Error getting projects.");
+        }
+    }
+}

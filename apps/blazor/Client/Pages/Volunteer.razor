@@ -1,0 +1,28 @@
+﻿@page "/volunteer"
+@inject IAppService AppService
+
+<PageTitle>Volunteer Experience</PageTitle>
+<h1>Volunteer Experience</h1>
+
+@foreach (var item in AppService.Volunteers)
+{
+    <h2>@item.JobTitle</h2>
+    <h3><a href="@item.Link" target="_blank">@item.CompanyName</a></h3>
+    <p>@item.Description</p>
+    <br />
+}
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await AppService.GetVolunteer();
+        }
+        catch(Exception)
+        {
+            Console.WriteLine("Error getting volunteer experience.");
+        }
+    }
+}

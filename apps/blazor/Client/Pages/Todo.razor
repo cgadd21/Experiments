@@ -1,0 +1,34 @@
+﻿@page "/todo"
+@inject IAppService AppService
+
+<PageTitle>Todo</PageTitle>
+<h1>Todo</h1>
+
+@foreach (var item in AppService.Todos)
+{
+    @if (item.Completed)
+    {
+        <h2>@item.Item <i class="oi oi-check"></i></h2>
+    }
+    else
+    {
+        <h2>@item.Item <i class="oi oi-x" style="color:#F92672;"></i></h2>
+    }
+
+    <br />
+}
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await AppService.GetTodo();
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Error getting todo.");
+        }
+    }
+}

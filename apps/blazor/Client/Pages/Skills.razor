@@ -1,0 +1,32 @@
+﻿@page "/skills"
+@inject IAppService AppService
+
+<PageTitle>Skills</PageTitle>
+<h1>Skills</h1>
+
+@foreach (var categoryGroup in AppService.Skills.GroupBy(skill => skill.Category))
+{
+    <h2>@categoryGroup.Key</h2>
+
+    @foreach (var skill in categoryGroup)
+    {
+        <h3>@skill.SkillName</h3>
+    }
+
+    <br />
+}
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await AppService.GetSkills();
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Error getting skills.");
+        }
+    }
+}

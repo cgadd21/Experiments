@@ -1,0 +1,30 @@
+﻿@page "/experience"
+@inject IAppService AppService
+
+<PageTitle>Experience</PageTitle>
+<h1>Experience</h1>
+
+@foreach (var item in AppService.Experiences)
+{
+    <h2>@item.JobTitle</h2>
+    <h3><a href="@item.Link" target="_blank">@item.CompanyName</a></h3>
+    <h4>@item.EmploymentType</h4>
+    <h5>@item.GetShortStartDate() - @item.GetShortEndDate()</h5>
+    <p>@item.Description</p>
+    <br />
+}
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await AppService.GetExperience();
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Error getting experience.");
+        }
+    }
+}

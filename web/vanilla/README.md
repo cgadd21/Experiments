@@ -1,0 +1,1 @@
+Connect to MySQL database using MySQLi API using PHP to display information on each page. Connect to Weather API using PHP to display information from my home weather station. Wrote custom JavaScript for menu highlighter.
